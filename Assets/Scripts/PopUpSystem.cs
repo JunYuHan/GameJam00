@@ -36,10 +36,11 @@ public class PopUpSystem : MonoBehaviour
         Exit.SetActive(active);
     }
 
-    public void MoveScene(string sceneName)
+    public void MoveScene(string sceneName) //æ¿ ¿Ãµø
     {
         SceneManager.LoadScene(sceneName);
     }
+    
     
     void ExitClickPopUp()
     {
