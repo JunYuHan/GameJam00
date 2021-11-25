@@ -10,7 +10,6 @@ public class PopUpSystem : MonoBehaviour
     public GameObject PopUp;
     public GameObject start;
     public GameObject Credit;
-    public GameObject Exit;
 
     private void Start()
     {
@@ -26,14 +25,12 @@ public class PopUpSystem : MonoBehaviour
                 OnClickStartButton(true);
             }
         }
-        ExitClickPopUp();
     }
 
     public void OnClickStartButton(bool active)
     {
         start.SetActive(active);
         Credit.SetActive(active);
-        Exit.SetActive(active);
     }
 
     public void MoveScene(string sceneName) //æ¿ ¿Ãµø
@@ -41,16 +38,4 @@ public class PopUpSystem : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
     
-    
-    void ExitClickPopUp()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
-            {
-                Exit.SetActive(false);
-                OnClickStartButton(true);
-            }
-        }
-    }
 }
