@@ -43,8 +43,11 @@ public class Game20Scene : GameManager
 
         if (DiceTrun_Btn != null)
             DiceTrun_Btn.onClick.AddListener(DiceTurn);
-        if (Back_Btn != null)
-            Back_Btn.onClick.AddListener(Back_Title);
+  //      if (Back_Btn != null)
+		//{
+  //          Back_Btn.onClick.AddListener(Back_Title);
+  //          Debug.Log(Back_Btn.onClick);
+		//}
     }
 
     void DiceTurn()
@@ -148,7 +151,7 @@ public class Game20Scene : GameManager
         yield return null;
 	}
     
-    void Back_Title()
+    public void Back_Title()
 	{
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
 	}
