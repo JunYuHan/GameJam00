@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool player1_turn = true, player2_turn = false;
     public bool player1_fin = false, player2_fin = false;
 
-    public static int CardNumber;
+    public int CardNumber;
 
     // Start is called before the first frame update
     void Start()

@@ -31,7 +31,9 @@ public class StopButton : MonoBehaviour
 	}
 	public void OnClickStop()
 	{
-		PlusNumber.text = GameManager.CardNumber.ToString();
+		PullCard pullCard = GameObject.Find("Pull").GetComponent<PullCard>();
+		PlusNumber.text = pullCard.sum[pullCard.Now_Sum_Number].ToString();
+		pullCard.Now_Sum_Number++;
 		//PlusNumber.text = "" + PlusNumber.ToString();
 	}
 }

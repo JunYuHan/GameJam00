@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class PopUpSystem : MonoBehaviour
 {
-    public GameObject PopUp;
-    public GameObject start;
-    public GameObject Credit;
+    [SerializeField] GameObject PopUp;
+    [SerializeField] GameObject start;
+    [SerializeField] GameObject Credit;
 
     private void Start()
     {
