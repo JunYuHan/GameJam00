@@ -54,30 +54,22 @@ public class Game20Scene : GameManager
             if (Dice_Choose == 1)
             {
                 int[] four1 = { player1_hap * 1, player1_hap * 1, player1_hap + 3, player1_hap - 3 };
+                player1_hap = four1[Random.Range(0, 3)];
             }
             else if (Dice_Choose == 2)
             {
                 int[] six1 = { player1_hap * 1, player1_hap * 3, 4, -4, player1_hap / 2, player1_hap / 2 };
+                player1_hap = four1[Random.Range(0, 5)];
             }
             else if (Dice_Choose == 3)
             {
                 int[] twelve2 = { player1_hap * 2, player1_hap * 2, player1_hap * 3, player1_hap * 4,
                     player1_hap + 5, player1_hap + 5, player1_hap + 6, player1_hap + 6, player1_hap - 6, player1_hap - 6,
                     player1_hap / 2, player1_hap / 2, player1_hap / 3, player1_hap / 4 };
+                player1_hap = four1[Random.Range(0, 11)];
             }
 
-            if (Dice_Choose == 1)
-			{
-
-			}
-            else if (Dice_Choose == 2)
-			{
-
-			}
-            else if (Dice_Choose == 3)
-			{
-
-			}
+            
 
         }
         else if (player2_turn == true)
@@ -85,30 +77,23 @@ public class Game20Scene : GameManager
             if (Dice_Choose == 1)
             {
                 int[] four2 = { player2_hap * 1, player2_hap * 1, player2_hap + 3, player2_hap - 3 };
+                player2_hap = four1[Random.Range(0, 3)];
             }
             else if (Dice_Choose == 2)
             {
                 int[] six2 = { player2_hap * 1, player2_hap * 3, player2_hap + 4, player2_hap - 4, player2_hap / 2, player2_hap / 2 };
+                player2_hap = four1[Random.Range(0, 5)];
             }
             else if (Dice_Choose == 3)
             {
                 int[] twelve2 = { player2_hap * 2, player2_hap * 2, player2_hap * 3, player2_hap * 4,
                     player2_hap + 5, player2_hap + 5, player2_hap + 6, player2_hap + 6, player2_hap - 6, player2_hap - 6,
                     player2_hap / 2, player2_hap / 2, player2_hap / 3, player2_hap / 4 };
+                player2_hap = four1[Random.Range(0, 11)];
             }
 
-            if (Dice_Choose == 1)
-            {
+            
 
-            }
-            else if (Dice_Choose == 2)
-            {
-
-            }
-            else if (Dice_Choose == 3)
-            {
-
-            }
         }
 
 
