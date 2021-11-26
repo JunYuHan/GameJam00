@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class StopButton : MonoBehaviour
 {
     public GameObject StopPopUp;
+    public Text PlusNumber;
     void Start()
     {
         
@@ -27,4 +29,9 @@ public class StopButton : MonoBehaviour
         {
             StopPopUp.SetActive(active);
         }
+    public void OnClickStop()
+    {
+            PlusNumber.text = GameManager.CardNumber.ToString();
+            //PlusNumber.text = "" + PlusNumber.ToString();
+    }
 }

@@ -33,7 +33,7 @@ public class PullCard : MonoBehaviour
 		NumberCardPopUp.SetActive(active);
 	}
 
-	public void OnClick() //팝업창에 숫자뜲
+	public void OnClickPull() //팝업창에 숫자뜲
 	{
 		CardNumber = Random.Range(0, 14);
 		NumberText.text = "" + CardNumber.ToString();
