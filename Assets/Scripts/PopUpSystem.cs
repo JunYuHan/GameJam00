@@ -7,19 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class PopUpSystem : MonoBehaviour
 {
+    Animator anim;
     [SerializeField] GameObject PopUp;
     [SerializeField] GameObject start;
     [SerializeField] GameObject Credit;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject() == false)
+                if (EventSystem.current.IsPointerOverGameObject() == false)
             {
                 PopUp.SetActive(false);
                 OnClickStartButton(true);

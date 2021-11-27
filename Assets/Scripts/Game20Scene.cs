@@ -58,8 +58,6 @@ public class Game20Scene : GameManager
             End_Pnl.SetActive(true);
 
             Result();
-
-            
         }
 
   //      if (Back_Btn != null)
@@ -244,8 +242,6 @@ public class Game20Scene : GameManager
             {
                 End_Txt.text = "player2이 승리하였습니다.\nBack버튼을 클릭하면 \n타이틀로 돌아갑니다.";
             }
-
-
     }
 
     public void Choose_Yes()
