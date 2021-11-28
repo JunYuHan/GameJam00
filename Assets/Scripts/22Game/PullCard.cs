@@ -67,14 +67,12 @@ public class PullCard : MonoBehaviour
 		switch (PlayerIndex)
 		{
 			case 0:
-				Debug.Log("P1Â÷·Ê");
 				P1_RemainNumber -= CardNumber;
 				NumberText1.text = string.Format("{0}", P1_RemainNumber.ToString());
 				PlayerIndex = 1;
 				break;
 
 			case 1:
-				Debug.Log("P2Â÷·Ê");
 				P2_RemainNumber -= CardNumber;
 				NumberText2.text = string.Format("{0}", P2_RemainNumber.ToString());
 				PlayerIndex = 0;
