@@ -17,6 +17,7 @@ public class PullCard : MonoBehaviour
 	public GameObject P1_WinPopUp;
 	public GameObject P2_WinPopUp;
 	public GameObject EndPopUp;
+	public GameObject CardAni_0;
 	public GameObject[] P1_NumberImg;
 	public GameObject[] P2_NumberImg;
 	public Sprite[] Number;
@@ -55,8 +56,6 @@ public class PullCard : MonoBehaviour
 	void Update()
 	{
 		anim.SetInteger("State", State);
-		Image.SetActive(IsClear);
-
 		switch (PlayerIndex)
 		{
 			case 0:
@@ -125,6 +124,7 @@ public class PullCard : MonoBehaviour
 				btnPull.enabled = false;
 				btnBack.enabled = false;
 				EndPopUp.SetActive(true);
+				CardAni_0.SetActive(false);
 			}
 			if (P1_RemainNumber == 22 || P2_RemainNumber < 22)
 			{
@@ -133,6 +133,7 @@ public class PullCard : MonoBehaviour
 				btnPull.enabled = false;
 				btnBack.enabled = false;
 				EndPopUp.SetActive(true);
+				CardAni_0.SetActive(false);
 			}
 		}
 
@@ -155,5 +156,6 @@ public class PullCard : MonoBehaviour
 	{
 		anim.SetBool("Pull ", true);
 	}
+
 }
 
