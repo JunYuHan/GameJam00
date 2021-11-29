@@ -102,7 +102,9 @@ public class PullCard : MonoBehaviour
             soundPlayer.Play();
             btnPull.enabled = false;
             btnBack.enabled = false;
+            EndPopUp.SetActive(true);
         }
+
 
         if (P1_RemainNumber == 22 || P2_RemainNumber < 22)
         {
@@ -110,12 +112,16 @@ public class PullCard : MonoBehaviour
             soundPlayer.Play();
             btnPull.enabled = false;
             btnBack.enabled = false;
+            EndPopUp.SetActive(true);
         }
+       
 
         IsClear = true;
-        EndPopUp.SetActive(true);
 
         ChooseNumber = false;
     }
-
+    public void OnClickExitButton()
+    {
+        Application.Quit();
+    }
 }
