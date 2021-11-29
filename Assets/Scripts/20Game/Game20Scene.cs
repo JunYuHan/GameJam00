@@ -35,6 +35,11 @@ public class Game20Scene : GameManager
     public bool player1_Stop = false, player2_Stop = false;
 
     public int result01 = 0, result02 = 0;
+
+    public GameObject west_Pnl;
+    public GameObject West_Txt;
+    public GameObject west_Btn;
+    
     #endregion
     //변수
 
@@ -88,8 +93,17 @@ public class Game20Scene : GameManager
         #endregion 
         //더미 변수
 
+        
+
+
         if (firstLan1 == true || firstLan2 == true)
         {
+            if (Dice_Choose == 0)
+            {
+                west_Pnl.SetActive(true);
+                //contiue;
+            }
+
             if (player1_turn == true)
             {
                 if (Dice_Choose == 1)
@@ -189,6 +203,10 @@ public class Game20Scene : GameManager
             }
 
         }
+
+        
+
+
 
 	}
 
@@ -336,6 +354,11 @@ public class Game20Scene : GameManager
             Player2_GameTurn++;
         }
     }
+    public void west()
+    {
+        west_Pnl.SetActive(false);
+    }
+
     public void Stop()
     {
         if (player1_turn == true && player2_turn == false)
