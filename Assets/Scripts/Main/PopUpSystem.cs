@@ -94,6 +94,27 @@ public class PopUpSystem : MonoBehaviour
 		HowtoPlayPopUp3.SetActive(false);
 		HowtoPlayPopUp4.SetActive(false);
 	}
+	public void OnClickNextButton1_B()
+	{
+		HowtoPlayPopUp1.SetActive(true);
+		HowtoPlayPopUp2.SetActive(false);
+		HowtoPlayPopUp3.SetActive(false);
+		HowtoPlayPopUp4.SetActive(false);
+	}
+	public void OnClickNextButton2_B()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(true);
+		HowtoPlayPopUp3.SetActive(false);
+		HowtoPlayPopUp4.SetActive(false);
+	}
+	public void OnClickNextButton3_B()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(false);
+		HowtoPlayPopUp3.SetActive(true);
+		HowtoPlayPopUp4.SetActive(false);
+	}
 	public void OnClickNextButton2()
 	{
 		HowtoPlayPopUp1.SetActive(false);
