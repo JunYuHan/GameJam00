@@ -42,22 +42,37 @@ public class Game20Scene : GameManager
     public GameObject west_Btn;
     
     public Text Turn_Txt;
+
+    private IEnumerator m_Coroutine;
     #endregion
     //변수
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_Coroutine = rest();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (player1_Stop == true)
+		{
             player1_turn = false;
+            player2_turn = true;
+        }
         if (player2_Stop == true)
+		{
             player2_turn = false;
+            player1_turn = true;
+        }
+
+        if (player1_Stop == true && player2_Stop == true)
+		{
+            player1_turn = false;
+            player2_turn = false;
+		}            
+                    
 
         if (firstLan1 == false && firstLan2 == false)
         {
@@ -67,8 +82,9 @@ public class Game20Scene : GameManager
                 Turn_Txt.text = "Player2의 차례";
         }
 
-        if ((Player1_GameTurn >= 7 && Player2_GameTurn >= 7) || (player1_hap == 20 || player1_hap == 20)
-            || (player1_Stop == true && player2_Stop == true))
+        if ((Player1_GameTurn >= 7 && Player2_GameTurn >= 7) || (player1_hap == 20 || player1_hap == 20) 
+            || (player1_Stop == true && player2_Stop == true) || (player1_Stop == true && Player2_GameTurn >= 7)
+            || (Player1_GameTurn >= 7 && player2_Stop == true))
         {
             End_Pnl.SetActive(true);
 
@@ -120,11 +136,13 @@ public class Game20Scene : GameManager
                 {
                     int[] four1 = { Dummy01, Dummy01, player1_hap + 3, player1_hap - 3 };
                     player1_hap = four1[UnityEngine.Random.Range(0, 4)];
+                    Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six1 = { Dummy01, Dummy02, player1_hap + 4, player1_hap - 4, Dummy03, Dummy03 };
                     player1_hap = six1[UnityEngine.Random.Range(0, 6)];
+                    Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
                 }
                 else if (Dice_Choose == 3)
                 {
@@ -132,6 +150,7 @@ public class Game20Scene : GameManager
                         Dummy05, Dummy05, Dummy06, Dummy06, Dummy07, Dummy07,
                         Dummy03, Dummy03, player1_hap / 3, player1_hap / 4 };
                     player1_hap = twelve1[UnityEngine.Random.Range(0, 12)];
+                    Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
                 }
 
                 NextDice();
@@ -143,11 +162,13 @@ public class Game20Scene : GameManager
                 {
                     int[] four2 = { Dummy08, Dummy08, player2_hap + 3, player2_hap - 3 };
                     player2_hap = four1[UnityEngine.Random.Range(0, 4)];
+                    Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six2 = { Dummy08, Dummy09, player2_hap + 4, player2_hap - 4, Dummy10, Dummy10};
                     player2_hap = six2[UnityEngine.Random.Range(0, 6)];
+                    Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
                 }
                 else if (Dice_Choose == 3)
                 {
@@ -155,6 +176,7 @@ public class Game20Scene : GameManager
                         Dummy12, Dummy12, Dummy13, Dummy13, Dummy14, Dummy14,
                         Dummy10, Dummy10, player2_hap / 3, player2_hap / 4 };
                     player2_hap = twelve2[UnityEngine.Random.Range(0, 12)];
+                    Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
                 }
 
                 NextDice();
@@ -260,12 +282,12 @@ public class Game20Scene : GameManager
     {
         
 
-        if (player1_hap < 0)
+        if (player1_hap < 20)
             result01 = 20 - player1_hap;
         else if (player1_hap > 20)
             result01 = 20 + player1_hap;
 
-        if (player2_hap < 0)
+        if (player2_hap < 20)
             result02 = 20 - player2_hap;
         else if (player2_hap > 20)
             result02 = 20 + player2_hap;
@@ -313,11 +335,13 @@ public class Game20Scene : GameManager
             {
                 int[] four1 = { Dummy01, Dummy01, player1_hap + 3, player1_hap - 3 };
                 player1_hap = four1[UnityEngine.Random.Range(0, 4)];
+                Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
             }
             else if (Dice_Choose == 2)
             {
                 int[] six1 = { Dummy01, Dummy02, player1_hap + 4, player1_hap - 4, Dummy03, Dummy03 };
                 player1_hap = six1[UnityEngine.Random.Range(0, 6)];
+                Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
             }
             else if (Dice_Choose == 3)
             {
@@ -325,6 +349,7 @@ public class Game20Scene : GameManager
                         Dummy05, Dummy05, Dummy06, Dummy06, Dummy07, Dummy07,
                         Dummy03, Dummy03, player1_hap / 3, player1_hap / 4 };
                 player1_hap = twelve1[UnityEngine.Random.Range(0, 12)];
+                Player1_Score_Txt.text = "Player1_Score : " + player1_hap;
             }
 
             firstLan1 = false;
@@ -338,11 +363,13 @@ public class Game20Scene : GameManager
             {
                 int[] four2 = { Dummy08, Dummy08, player2_hap + 3, player2_hap - 3 };
                 player2_hap = four1[UnityEngine.Random.Range(0, 4)];
+                Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
             }
             else if (Dice_Choose == 2)
             {
                 int[] six2 = { Dummy08, Dummy09, player2_hap + 4, player2_hap - 4, Dummy10, Dummy10 };
                 player2_hap = six2[UnityEngine.Random.Range(0, 6)];
+                Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
             }
             else if (Dice_Choose == 3)
             {
@@ -350,6 +377,7 @@ public class Game20Scene : GameManager
                         Dummy12, Dummy12, Dummy13, Dummy13, Dummy14, Dummy14,
                         Dummy10, Dummy10, player2_hap / 3, player2_hap / 4 };
                 player2_hap = twelve2[UnityEngine.Random.Range(0, 12)];
+                Player2_Score_Txt.text = "Player2_Score : " + player2_hap;
             }
 
             firstLan2 = false;
@@ -407,13 +435,15 @@ public class Game20Scene : GameManager
             player2_turn = true;
             player1_Stop = true;
             Turn_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
+            StartCoroutine("rest");
         }
-        else if (player1_turn == false && player2_Stop == true)
+        else if (player1_turn == false && player2_turn == true)
         {
             player2_turn = false;
             player1_turn = true;
             player2_Stop = true;
             Turn_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
+            StartCoroutine("rest");
         }
     }
     public void FourDice()
@@ -429,13 +459,14 @@ public class Game20Scene : GameManager
         Dice_Choose = 3;
 	}
 
-    private IEnumerator rest()
+    IEnumerator rest()
 	{
-        yield return null;
+        yield return new WaitForSecondsRealtime(3);
 	}
     
     public void Back_Title()
 	{
+        Debug.Log("Title");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
 	}
 }
