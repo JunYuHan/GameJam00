@@ -13,8 +13,9 @@ public class PullCard : MonoBehaviour
 	public GameObject P1_WinPopUp;
 	public GameObject P2_WinPopUp;
 	public GameObject EndPopUp;
-	public Text NumberText1;
-	public Text NumberText2;
+	public GameObject[] P1_NumberImg;
+	public GameObject[] P2_NumberImg;
+	public Sprite[] Number;
 	public GameObject Image; //메뉴화면으로 돌아갈때 다른거 못 누르게하기 위해서
 	private bool IsClear;
 	private int PlayerIndex; //0,1(0이면 P1/1이면 P2)
@@ -31,8 +32,6 @@ public class PullCard : MonoBehaviour
 		ChooseNumber = true;
 		P1_RemainNumber = 100;
 		P2_RemainNumber = 100;
-		NumberText1.text = P1_RemainNumber.ToString(); // P1의 숫자가 텍스트에 점수뜨기 위해 
-		NumberText2.text = P2_RemainNumber.ToString(); // P2의 숫자가 텍스트에 점수뜨기 위해 
 	}
 	// Update is called once per frame
 	void Update()
@@ -52,7 +51,25 @@ public class PullCard : MonoBehaviour
 				break;
 		}
 
+		int P1_Score1 = P1_RemainNumber / 100;  //폰트 적용(100의 자리)
+		P1_NumberImg[0].GetComponent<Image>().sprite = Number[P1_Score1];
 
+		int P1_Score2 = P1_RemainNumber % 100; //10의 자리)
+		P1_Score2 = P1_Score2 / 10;
+		P1_NumberImg[1].GetComponent<Image>().sprite = Number[P1_Score2];
+
+		int P1_Score3 = P1_RemainNumber % 10;
+		P1_NumberImg[2].GetComponent<Image>().sprite = Number[P1_Score3];
+
+		int P2_Score1 = P2_RemainNumber / 100;  //폰트 적용(100의 자리)
+		P2_NumberImg[0].GetComponent<Image>().sprite = Number[P2_Score1];
+
+		int P2_Score2 = P2_RemainNumber % 100; //10의 자리)
+		P2_Score2 = P2_Score2 / 10;
+		P2_NumberImg[1].GetComponent<Image>().sprite = Number[P2_Score2];
+
+		int P2_Score3 = P2_RemainNumber % 10;
+		P2_NumberImg[2].GetComponent<Image>().sprite = Number[P2_Score3];
 
 	}
 	//public void PullButtonClick(bool active)
@@ -68,13 +85,11 @@ public class PullCard : MonoBehaviour
 		{
 			case 0:
 				P1_RemainNumber -= CardNumber;
-				NumberText1.text = string.Format("{0}", P1_RemainNumber.ToString());
 				PlayerIndex = 1;
 				break;
 
 			case 1:
 				P2_RemainNumber -= CardNumber;
-				NumberText2.text = string.Format("{0}", P2_RemainNumber.ToString());
 				PlayerIndex = 0;
 				break;
 		}
