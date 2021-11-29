@@ -51,6 +51,7 @@ public class Game20Scene : GameManager
     void Start()
     {
         m_Coroutine = rest();
+
     }
 
     // Update is called once per frame
