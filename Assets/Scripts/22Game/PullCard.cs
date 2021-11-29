@@ -8,11 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class PullCard : MonoBehaviour
 {
+	public static PullCard Instance { get; private set; }
+	[SerializeField] private AudioSource soundPlayer;
+	[SerializeField] private Button btnPull;
+	[SerializeField] private Button btnBack;
 	public GameObject P1_Turn;
 	public GameObject P2_Turn;
 	public GameObject P1_WinPopUp;
 	public GameObject P2_WinPopUp;
 	public GameObject EndPopUp;
+	public GameObject CardAni_0;
 	public GameObject[] P1_NumberImg;
 	public GameObject[] P2_NumberImg;
 	public Sprite[] Number;
@@ -26,8 +31,22 @@ public class PullCard : MonoBehaviour
 	public int[] sum = new int[5];   // 배열은 배열 크기를 정해둬야해서 안좋은게 있지만 효율적임 리스트보다 주소 할당을 적게 받아서 메모리가 덜 먹음
 									 //public List<int> sum = new List<int>();   // List 리스트는 배열 크기 안정해두고 List.Add로 계속 추가 가능, *(List.Remove, List.RemoveAt, List.RemoveAtAll로 삭제도 가능)
 	bool ChooseNumber; //PULL를 눌렀을때 숫자가 한개씩 나오게 하려는 변수
+	public Animator anim;
+	int State = 0;
+	private void Awake()
+	{
+		Instance = this;
+
+	}
 	void Start()
 	{
+
+		btnPull.onClick.AddListener(() =>
+		{
+				anim.SetTrigger("Pull ");
+		});
+
+		anim.SetBool("IsFirst", true);
 		IsClear = false;
 		ChooseNumber = true;
 		P1_RemainNumber = 100;
@@ -36,8 +55,7 @@ public class PullCard : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		Image.SetActive(IsClear);
-
+		anim.SetInteger("State", State);
 		switch (PlayerIndex)
 		{
 			case 0:
@@ -79,35 +97,65 @@ public class PullCard : MonoBehaviour
 
 	public void OnClickPull() //팝업창에 숫자뜲
 	{
-		CardNumber = Random.Range(1, 14); // 0~14
-
-		switch (PlayerIndex)
+		if (State == 0)
 		{
-			case 0:
-				P1_RemainNumber -= CardNumber;
-				PlayerIndex = 1;
-				break;
-
-			case 1:
-				P2_RemainNumber -= CardNumber;
-				PlayerIndex = 0;
-				break;
+			State = 1;
 		}
-		if (P2_RemainNumber == 22 || P1_RemainNumber < 22)
+		else if (State == 1)
 		{
-			P2_WinPopUp.SetActive(true);
-			IsClear = true;
-			EndPopUp.SetActive(true);
+			CardNumber = Random.Range(1, 14); // 0~14
+			switch (PlayerIndex)
+			{
+				case 0:
+					P1_RemainNumber -= CardNumber;
+
+					PlayerIndex = 1;
+					break;
+
+				case 1:
+					P2_RemainNumber -= CardNumber;
+					PlayerIndex = 0;
+					break;
+			}
+			if (P2_RemainNumber == 22 || P1_RemainNumber < 22)
+			{
+				P2_WinPopUp.SetActive(true);
+				soundPlayer.Play();
+				btnPull.enabled = false;
+				btnBack.enabled = false;
+				EndPopUp.SetActive(true);
+				CardAni_0.SetActive(false);
+			}
+			if (P1_RemainNumber == 22 || P2_RemainNumber < 22)
+			{
+				P1_WinPopUp.SetActive(true);
+				soundPlayer.Play();
+				btnPull.enabled = false;
+				btnBack.enabled = false;
+				EndPopUp.SetActive(true);
+				CardAni_0.SetActive(false);
+			}
 		}
 
-		if (P1_RemainNumber == 22 || P2_RemainNumber < 22)
-		{
-			P1_WinPopUp.SetActive(true);
-			IsClear = true;
-			EndPopUp.SetActive(true);
-		}
+
+
+
+		IsClear = true;
 
 		ChooseNumber = false;
 	}
+	public void OnClickExitButton()
+	{
+		Application.Quit();
+	}
+	public static void EndAnim()
+	{
+		Instance.anim.SetBool("IsFirst", false);
+	}
+	public void ZlroDDi()
+	{
+		anim.SetBool("Pull ", true);
+	}
 
 }
+
