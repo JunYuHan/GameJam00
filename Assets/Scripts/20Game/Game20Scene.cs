@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Game20Scene : GameManager
 {
@@ -40,6 +41,7 @@ public class Game20Scene : GameManager
     public GameObject West_Txt;
     public GameObject west_Btn;
     
+    public Text Turn_Txt;
     #endregion
     //º¯¼ö
 
@@ -101,7 +103,7 @@ public class Game20Scene : GameManager
             if (Dice_Choose == 0)
             {
                 west_Pnl.SetActive(true);
-                //contiue;
+                goto West_On;
             }
 
             if (player1_turn == true)
@@ -109,19 +111,19 @@ public class Game20Scene : GameManager
                 if (Dice_Choose == 1)
                 {
                     int[] four1 = { Dummy01, Dummy01, player1_hap + 3, player1_hap - 3 };
-                    player1_hap = four1[Random.Range(0, 4)];
+                    player1_hap = four1[UnityEngine.Random.Range(0, 4)];
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six1 = { Dummy01, Dummy02, player1_hap + 4, player1_hap - 4, Dummy03, Dummy03 };
-                    player1_hap = six1[Random.Range(0, 6)];
+                    player1_hap = six1[UnityEngine.Random.Range(0, 6)];
                 }
                 else if (Dice_Choose == 3)
                 {
                     int[] twelve1 = { Dummy04, Dummy04, Dummy02, player1_hap * 4,
                         Dummy05, Dummy05, Dummy06, Dummy06, Dummy07, Dummy07,
                         Dummy03, Dummy03, player1_hap / 3, player1_hap / 4 };
-                    player1_hap = twelve1[Random.Range(0, 12)];
+                    player1_hap = twelve1[UnityEngine.Random.Range(0, 12)];
                 }
 
                 NextDice();
@@ -132,19 +134,19 @@ public class Game20Scene : GameManager
                 if (Dice_Choose == 1)
                 {
                     int[] four2 = { Dummy08, Dummy08, player2_hap + 3, player2_hap - 3 };
-                    player2_hap = four1[Random.Range(0, 4)];
+                    player2_hap = four1[UnityEngine.Random.Range(0, 4)];
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six2 = { Dummy08, Dummy09, player2_hap + 4, player2_hap - 4, Dummy10, Dummy10};
-                    player2_hap = six2[Random.Range(0, 6)];
+                    player2_hap = six2[UnityEngine.Random.Range(0, 6)];
                 }
                 else if (Dice_Choose == 3)
                 {
                     int[] twelve2 = { Dummy11, Dummy11, Dummy09, player2_hap * 4,
                         Dummy12, Dummy12, Dummy13, Dummy13, Dummy14, Dummy14,
                         Dummy10, Dummy10, player2_hap / 3, player2_hap / 4 };
-                    player2_hap = twelve2[Random.Range(0, 12)];
+                    player2_hap = twelve2[UnityEngine.Random.Range(0, 12)];
                 }
 
                 NextDice();
@@ -160,19 +162,19 @@ public class Game20Scene : GameManager
                 if (Dice_Choose == 1)
                 {
                     int[] four1 = { Dummy01, Dummy01, player1_hap + 3, player1_hap - 3 };
-                    player1_hap = four1[Random.Range(0, 4)];
+                    player1_hap = four1[UnityEngine.Random.Range(0, 4)];
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six1 = { Dummy01, Dummy02, player1_hap + 4, player1_hap - 4, Dummy03, Dummy03 };
-                    player1_hap = six1[Random.Range(0, 6)];
+                    player1_hap = six1[UnityEngine.Random.Range(0, 6)];
                 }
                 else if (Dice_Choose == 3)
                 {
                     int[] twelve1 = { Dummy04, Dummy04, Dummy02, player1_hap * 4,
                         Dummy05, Dummy05, Dummy06, Dummy06, Dummy07, Dummy07,
                         Dummy03, Dummy03, player1_hap / 3, player1_hap / 4 };
-                    player1_hap = twelve1[Random.Range(0, 12)];
+                    player1_hap = twelve1[UnityEngine.Random.Range(0, 12)];
                 }
 
                 Hap();
@@ -183,19 +185,19 @@ public class Game20Scene : GameManager
                 if (Dice_Choose == 1)
                 {
                     int[] four2 = { Dummy08, Dummy08, player2_hap + 3, player2_hap - 3 };
-                    player2_hap = four1[Random.Range(0, 4)];
+                    player2_hap = four1[UnityEngine.Random.Range(0, 4)];
                 }
                 else if (Dice_Choose == 2)
                 {
                     int[] six2 = { Dummy08, Dummy09, player2_hap + 4, player2_hap - 4, Dummy10, Dummy10 };
-                    player2_hap = six2[Random.Range(0, 6)];
+                    player2_hap = six2[UnityEngine.Random.Range(0, 6)];
                 }
                 else if (Dice_Choose == 3)
                 {
                     int[] twelve2 = { Dummy11, Dummy11, Dummy09, player2_hap * 4,
                         Dummy12, Dummy12, Dummy13, Dummy13, Dummy14, Dummy14,
                         Dummy10, Dummy10, player2_hap / 3, player2_hap / 4 };
-                    player2_hap = twelve2[Random.Range(0, 12)];
+                    player2_hap = twelve2[UnityEngine.Random.Range(0, 12)];
                 }
 
                 Hap();
@@ -204,9 +206,8 @@ public class Game20Scene : GameManager
 
         }
 
-        
-
-
+    West_On:
+        Debug.Log("µÊ");
 
 	}
 
@@ -227,12 +228,25 @@ public class Game20Scene : GameManager
             Player2_GameTurn++;
         }
 
+        if (firstLan1 == false && firstLan2 == false)
+		{
+            if (player1_turn == true && player2_turn == false)
+                Turn_Txt.text = "Player1ÀÇ Â÷·Ê";
+            else if (player1_turn == false && player2_turn == true)
+                Turn_Txt.text = "Player2ÀÇ Â÷·Ê";
+        }
     }
 
     void NextDice()
 	{
         Choose_Pnl.SetActive(true);
-	}
+
+        if (firstLan1 == true && firstLan2 == true)
+            Choose_Txt.text = "Player1ÀÇ\nÁÖ»çÀ§¸¦ ´õ ±¼¸®½Ã°Ú½À´Ï±î?";
+        else if (firstLan1 == false && firstLan2 == true)
+            Choose_Txt.text = "Player2ÀÇ\nÁÖ»çÀ§¸¦ ´õ ±¼¸®½Ã°Ú½À´Ï±î?";
+
+    }
 
     void Result()
     {
@@ -290,19 +304,19 @@ public class Game20Scene : GameManager
             if (Dice_Choose == 1)
             {
                 int[] four1 = { Dummy01, Dummy01, player1_hap + 3, player1_hap - 3 };
-                player1_hap = four1[Random.Range(0, 4)];
+                player1_hap = four1[UnityEngine.Random.Range(0, 4)];
             }
             else if (Dice_Choose == 2)
             {
                 int[] six1 = { Dummy01, Dummy02, player1_hap + 4, player1_hap - 4, Dummy03, Dummy03 };
-                player1_hap = six1[Random.Range(0, 6)];
+                player1_hap = six1[UnityEngine.Random.Range(0, 6)];
             }
             else if (Dice_Choose == 3)
             {
                 int[] twelve1 = { Dummy04, Dummy04, Dummy02, player1_hap * 4,
                         Dummy05, Dummy05, Dummy06, Dummy06, Dummy07, Dummy07,
                         Dummy03, Dummy03, player1_hap / 3, player1_hap / 4 };
-                player1_hap = twelve1[Random.Range(0, 12)];
+                player1_hap = twelve1[UnityEngine.Random.Range(0, 12)];
             }
 
             firstLan1 = false;
@@ -315,19 +329,19 @@ public class Game20Scene : GameManager
             if (Dice_Choose == 1)
             {
                 int[] four2 = { Dummy08, Dummy08, player2_hap + 3, player2_hap - 3 };
-                player2_hap = four1[Random.Range(0, 4)];
+                player2_hap = four1[UnityEngine.Random.Range(0, 4)];
             }
             else if (Dice_Choose == 2)
             {
                 int[] six2 = { Dummy08, Dummy09, player2_hap + 4, player2_hap - 4, Dummy10, Dummy10 };
-                player2_hap = six2[Random.Range(0, 6)];
+                player2_hap = six2[UnityEngine.Random.Range(0, 6)];
             }
             else if (Dice_Choose == 3)
             {
                 int[] twelve2 = { Dummy11, Dummy11, Dummy09, player2_hap * 4,
                         Dummy12, Dummy12, Dummy13, Dummy13, Dummy14, Dummy14,
                         Dummy10, Dummy10, player2_hap / 3, player2_hap / 4 };
-                player2_hap = twelve2[Random.Range(0, 12)];
+                player2_hap = twelve2[UnityEngine.Random.Range(0, 12)];
             }
 
             firstLan2 = false;
@@ -335,6 +349,15 @@ public class Game20Scene : GameManager
             player1_turn = true;
             Player2_GameTurn++;
         }
+
+        if (firstLan1 == false && firstLan2 == false)
+        {
+            if (player1_turn == true && player2_turn == false)
+                Turn_Txt.text = "Player1ÀÇ Â÷·Ê";
+            else if (player1_turn == false && player2_turn == true)
+                Turn_Txt.text = "Player2ÀÇ Â÷·Ê";
+        }
+
     }
     public void Choose_No()
     {
@@ -353,6 +376,15 @@ public class Game20Scene : GameManager
             player1_turn = true;
             Player2_GameTurn++;
         }
+
+        if (firstLan1 == false && firstLan2 == false)
+        {
+            if (player1_turn == true && player2_turn == false)
+                Turn_Txt.text = "Player1ÀÇ Â÷·Ê";
+            else if (player1_turn == false && player2_turn == true)
+                Turn_Txt.text = "Player2ÀÇ Â÷·Ê";
+        }
+
     }
     public void west()
     {
@@ -394,6 +426,6 @@ public class Game20Scene : GameManager
     
     public void Back_Title()
 	{
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
 	}
 }
