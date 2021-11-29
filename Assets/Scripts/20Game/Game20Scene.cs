@@ -59,6 +59,14 @@ public class Game20Scene : GameManager
         if (player2_Stop == true)
             player2_turn = false;
 
+        if (firstLan1 == false && firstLan2 == false)
+        {
+            if (player1_turn == true && player2_turn == false)
+                Turn_Txt.text = "Player1ÀÇ Â÷·Ê";
+            else if (player1_turn == false && player2_turn == true)
+                Turn_Txt.text = "Player2ÀÇ Â÷·Ê";
+        }
+
         if ((Player1_GameTurn >= 7 && Player2_GameTurn >= 7) || (player1_hap == 20 || player1_hap == 20)
             || (player1_Stop == true && player2_Stop == true))
         {
