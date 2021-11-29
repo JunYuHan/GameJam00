@@ -11,6 +11,10 @@ public class PopUpSystem : MonoBehaviour
 	[SerializeField] GameObject PopUp;
 	[SerializeField] GameObject start;
 	[SerializeField] GameObject Credit;
+	[SerializeField] GameObject HowtoPlayPopUp1;
+	[SerializeField] GameObject HowtoPlayPopUp2;
+	[SerializeField] GameObject HowtoPlayPopUp3;
+	[SerializeField] GameObject HowtoPlayPopUp4;
 	[SerializeField] GameObject CreditClose;
  	[SerializeField] GameObject HideImg; //Start 눌렀을 때 다른거 못 건들게
 	[SerializeField] GameObject SettingPopUp;
@@ -63,14 +67,7 @@ public class PopUpSystem : MonoBehaviour
 		source.mute = true;
 		MusicImage.sprite = MusicSpriteOff;
 	}
-	public void OnClickCreditOnButton()
-    {
-		Credit.SetActive(true);
-    }
-	public void OnClickCreditOffButton()
-    {
-		Credit.SetActive(false);
-    }
+	
 	public void MoveScene(string sceneName) //씬 이동
 	{
 		SceneManager.LoadScene(sceneName);
@@ -79,4 +76,38 @@ public class PopUpSystem : MonoBehaviour
 	{
 		Application.Quit();
 	}
+	public void OnClickHowtoPlay(bool active)
+	{
+		HowtoPlayPopUp1.SetActive(active);
+	}
+	public void OnClickXButton()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(false);
+		HowtoPlayPopUp3.SetActive(false);
+		HowtoPlayPopUp4.SetActive(false);
+	}
+	public void OnClickNextButton1()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(true);
+		HowtoPlayPopUp3.SetActive(false);
+		HowtoPlayPopUp4.SetActive(false);
+	}
+	public void OnClickNextButton2()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(false);
+		HowtoPlayPopUp3.SetActive(true);
+		HowtoPlayPopUp4.SetActive(false);
+	}
+	public void OnClickNextButton3()
+	{
+		HowtoPlayPopUp1.SetActive(false);
+		HowtoPlayPopUp2.SetActive(false);
+		HowtoPlayPopUp3.SetActive(false);
+		HowtoPlayPopUp4.SetActive(true);
+	}
+
+
 }
