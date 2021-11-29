@@ -242,9 +242,9 @@ public class Game20Scene : GameManager
         Choose_Pnl.SetActive(true);
 
         if (firstLan1 == true && firstLan2 == true)
-            Choose_Txt.text = "Player1의\n주사위를 더 굴리시겠습니까?";
+            Choose_Txt.text = "Player1의 주사위를\n한 번 더 굴리시겠습니까?";
         else if (firstLan1 == false && firstLan2 == true)
-            Choose_Txt.text = "Player2의\n주사위를 더 굴리시겠습니까?";
+            Choose_Txt.text = "Player2의 주사위를\n한 번 더 굴리시겠습니까?";
 
     }
 
@@ -398,12 +398,14 @@ public class Game20Scene : GameManager
             player1_turn = false;
             player2_turn = true;
             player1_Stop = true;
+            Turn_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
         }
         else if (player1_turn == false && player2_Stop == true)
         {
             player2_turn = false;
             player1_turn = true;
             player2_Stop = true;
+            Turn_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
         }
     }
     public void FourDice()
@@ -426,6 +428,6 @@ public class Game20Scene : GameManager
     
     public void Back_Title()
 	{
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
 	}
 }
