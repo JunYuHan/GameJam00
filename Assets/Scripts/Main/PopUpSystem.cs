@@ -76,4 +76,8 @@ public class PopUpSystem : MonoBehaviour
 	{
 		SceneManager.LoadScene(sceneName);
 	}
+	public void OnClickExitButton()
+	{
+		Application.Quit();
+	}
 }
