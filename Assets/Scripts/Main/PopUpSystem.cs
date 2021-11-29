@@ -11,7 +11,6 @@ public class PopUpSystem : MonoBehaviour
 	[SerializeField] GameObject PopUp;
 	[SerializeField] GameObject start;
 	[SerializeField] GameObject Credit;
-	[SerializeField] GameObject CreditPanel;
 	[SerializeField] GameObject CreditClose;
  	[SerializeField] GameObject HideImg; //Start 눌렀을 때 다른거 못 건들게
 	[SerializeField] GameObject SettingPopUp;
@@ -70,7 +69,7 @@ public class PopUpSystem : MonoBehaviour
     }
 	public void OnClickCreditOffButton()
     {
-
+		Credit.SetActive(false);
     }
 	public void MoveScene(string sceneName) //씬 이동
 	{
