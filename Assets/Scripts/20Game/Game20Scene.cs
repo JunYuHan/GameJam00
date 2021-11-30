@@ -462,6 +462,7 @@ public class Game20Scene : GameManager
 
     IEnumerator rest()
 	{
+        
         yield return new WaitForSecondsRealtime(3);
 	}
     
