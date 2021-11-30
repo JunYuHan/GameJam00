@@ -43,14 +43,14 @@ public class Game20Scene : GameManager
     
     public Text Turn_Txt;
 
-    private IEnumerator m_Coroutine;
+    
     #endregion
     //변수
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Coroutine = rest();
+        
 
     }
 
@@ -435,16 +435,18 @@ public class Game20Scene : GameManager
             player1_turn = false;
             player2_turn = true;
             player1_Stop = true;
-            Turn_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
-            StartCoroutine("rest");
+            InvokeRepeating("rest", 0f, 0.005f);
+            Invoke("Stoping", 3f);
+            
         }
         else if (player1_turn == false && player2_turn == true)
         {
             player2_turn = false;
             player1_turn = true;
             player2_Stop = true;
-            Turn_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
-            StartCoroutine("rest");
+            InvokeRepeating("rest", 0f, 0.005f);
+            Invoke("Stoping", 3f);
+            
         }
     }
     public void FourDice()
@@ -460,10 +462,20 @@ public class Game20Scene : GameManager
         Dice_Choose = 3;
 	}
 
-    IEnumerator rest()
+    void rest()
 	{
-        
-        yield return new WaitForSecondsRealtime(3);
+        Debug.Log("된다고");
+        if (player1_turn == true && player2_turn == false)
+            Turn_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
+        else if (player1_turn == false && player2_turn == true)
+            Turn_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
+
+
+    }
+
+    void Canel()
+	{
+        CancelInvoke("rest");
 	}
     
     public void Back_Title()
