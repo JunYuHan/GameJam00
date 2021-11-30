@@ -43,7 +43,7 @@ public class Game20Scene : GameManager
     
     public Text Turn_Txt;
 
-    
+    public Text Stop_Txt;
     #endregion
     //변수
 
@@ -435,18 +435,24 @@ public class Game20Scene : GameManager
             player1_turn = false;
             player2_turn = true;
             player1_Stop = true;
-            InvokeRepeating("rest", 0f, 0.005f);
-            Invoke("Stoping", 3f);
-            
+            if (player1_Stop == true)
+                Stop_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
+            else if (player2_Stop == true)
+                Stop_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
+
+            Invoke("Canel", 3f);
         }
         else if (player1_turn == false && player2_turn == true)
         {
             player2_turn = false;
             player1_turn = true;
             player2_Stop = true;
-            InvokeRepeating("rest", 0f, 0.005f);
-            Invoke("Stoping", 3f);
-            
+            if (player1_Stop == true)
+                Stop_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
+            else if (player2_Stop == true)
+                Stop_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
+
+            Invoke("Canel", 3f);
         }
     }
     public void FourDice()
@@ -466,17 +472,17 @@ public class Game20Scene : GameManager
 	{
         Debug.Log("된다고");
         if (player1_turn == true && player2_turn == false)
-            Turn_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
+            Stop_Txt.text = "Player1은 더 이상\n주사위를 굴릴 수 없습니다.";
         else if (player1_turn == false && player2_turn == true)
-            Turn_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
+            Stop_Txt.text = "Player2은 더 이상\n주사위를 굴릴 수 없습니다.";
 
 
     }
 
     void Canel()
 	{
-        CancelInvoke("rest");
-	}
+        Stop_Txt.text = "";
+    }
     
     public void Back_Title()
 	{
